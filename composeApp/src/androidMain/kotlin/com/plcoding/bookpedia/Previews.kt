@@ -18,7 +18,6 @@ private fun BookSearchBarPreview() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.White)
         ) {
             BookSearchBar(
                 searchQuery = "Kotlin",
