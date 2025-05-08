@@ -57,7 +57,9 @@ fun BookListItem(
     ) {
 
         Row(
-            modifier = Modifier.padding(16.dp).fillMaxWidth().height(IntrinsicSize.Min)
+            modifier = Modifier.padding(16.dp).fillMaxWidth().height(IntrinsicSize.Min),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Box(
                 modifier = Modifier.height(100.dp),
