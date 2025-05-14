@@ -74,15 +74,21 @@ fun BookListScreen(
 ) {
 
     val keyboardController = LocalSoftwareKeyboardController.current
-    val pagerState = rememberPagerState { 2 }
+    val pagerState = rememberPagerState { 2  }
     val searchResultListState = rememberLazyListState()
     val favoriteResultListState = rememberLazyListState()
-
 
     LaunchedEffect(state.searchResults) {
         searchResultListState.animateScrollToItem(0)
     }
 
+    LaunchedEffect(state.selectedTabIndex) {
+        pagerState.animateScrollToPage(state.selectedTabIndex)
+    }
+
+    LaunchedEffect(pagerState.currentPage) {
+        onAction(BookListAction.OnTabSelected(pagerState.currentPage))
+    }
 
     Column(
         modifier = Modifier.fillMaxSize().background(DarkBlue).statusBarsPadding(),
@@ -217,7 +223,6 @@ fun BookListScreen(
                                         text = stringResource(Res.string.no_favorite_books),
                                         textAlign = TextAlign.Center,
                                         style = MaterialTheme.typography.headlineSmall,
-                                        color = MaterialTheme.colorScheme.error
                                     )
                                 } else {
 
