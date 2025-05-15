@@ -10,7 +10,7 @@ import io.ktor.client.request.parameter
 
 private const val BASE_URL = "https://openlibrary.org"
 
-class ktorRemoteBookDatasource(
+class KtorRemoteBookDataSource(
     private val httpClient: HttpClient
 ) : RemoteBookDataSource{
 
