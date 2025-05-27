@@ -26,12 +26,11 @@ class BookListViewModel(
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(BookListState())
-    val state = _state.
-         onStart {
-             if(cachedBooks.isEmpty()){
-                 observeSearchQuery()
-             }
-         }
+    val state = _state.onStart {
+        if (cachedBooks.isEmpty()) {
+            observeSearchQuery()
+        }
+    }
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000L),
