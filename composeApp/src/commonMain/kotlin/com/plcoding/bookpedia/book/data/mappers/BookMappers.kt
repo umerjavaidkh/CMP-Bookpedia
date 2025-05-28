@@ -14,7 +14,7 @@ fun SearchedBookDto.toBook(): Book {
         },
         authors = authorNames ?: emptyList(),
         description = null,
-        language = language ?: emptyList(),
+        language = language ?: listOf("ENG"),
         firstPublishYear = firstPublishYear.toString(),
         averageRating = ratingsAverage,
         ratingCount = ratingsCount?.toInt(),
