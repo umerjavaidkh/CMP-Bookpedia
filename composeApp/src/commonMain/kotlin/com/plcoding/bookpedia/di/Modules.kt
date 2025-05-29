@@ -3,7 +3,7 @@ package com.plcoding.bookpedia.di
 import com.plcoding.bookpedia.book.data.HttpClientFactory
 import com.plcoding.bookpedia.book.data.network.KtorRemoteBookDataSource
 import com.plcoding.bookpedia.book.data.network.RemoteBookDataSource
-import com.plcoding.bookpedia.book.data.repository.DefaultBookRespository
+import com.plcoding.bookpedia.book.data.repository.DefaultBookRepository
 import com.plcoding.bookpedia.book.domain.BookRepository
 import com.plcoding.bookpedia.book.presentation.SelectedBookViewModel
 import com.plcoding.bookpedia.book.presentation.book_detail.BookDetailViewModel
@@ -19,7 +19,7 @@ expect val platformModule : Module
 val shareModule = module {
     single { HttpClientFactory.create(get()) }
     singleOf(::KtorRemoteBookDataSource).bind<RemoteBookDataSource>()
-    singleOf(::DefaultBookRespository).bind<BookRepository>()
+    singleOf(::DefaultBookRepository).bind<BookRepository>()
 
     viewModelOf(::BookListViewModel)
     viewModelOf(::BookDetailViewModel)

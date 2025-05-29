@@ -1,5 +1,6 @@
 package com.plcoding.bookpedia.book.presentation.book_detail
 
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,9 +10,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.CircularProgressIndicator
@@ -34,7 +36,6 @@ import com.plcoding.bookpedia.book.presentation.book_detail.components.BlurredIm
 import com.plcoding.bookpedia.book.presentation.book_detail.components.BookChip
 import com.plcoding.bookpedia.book.presentation.book_detail.components.ChipSize
 import com.plcoding.bookpedia.book.presentation.book_detail.components.TitleContent
-import com.plcoding.bookpedia.book.presentation.book_list.BookListAction
 import com.plcoding.bookpedia.core.presentation.SandYellow
 import org.jetbrains.compose.resources.stringResource
 import kotlin.math.round
@@ -77,10 +78,12 @@ private fun BookDetailScreen(
         modifier = Modifier.fillMaxSize()
     ) {
         if (state.book != null) {
+            val scrollState = rememberScrollState()
             Column(
                 modifier = Modifier
                     .widthIn(max = 700.dp)
                     .fillMaxWidth()
+                    .verticalScroll(scrollState) // 👈 Use verticalScroll for Column
                     .padding(
                         vertical = 16.dp,
                         horizontal = 24.dp

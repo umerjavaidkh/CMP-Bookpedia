@@ -8,7 +8,7 @@ import com.plcoding.bookpedia.core.domain.DataError
 import com.plcoding.bookpedia.core.domain.Result
 import com.plcoding.bookpedia.core.domain.map
 
-class DefaultBookRespository(
+class DefaultBookRepository(
     private val remoteBookDataSource: RemoteBookDataSource
 ) : BookRepository {
     override suspend fun searchBooks(
@@ -17,5 +17,10 @@ class DefaultBookRespository(
 
         return remoteBookDataSource.searchBooks(query = query)
             .map { dto -> dto.results.map { it.toBook() } }
+    }
+
+    override suspend fun getBookDescription(bookWorkId: String): Result<String?, DataError.Remote> {
+        return remoteBookDataSource.getBookDetails(bookWorkId)
+            .map { dto -> dto.description }
     }
 }
