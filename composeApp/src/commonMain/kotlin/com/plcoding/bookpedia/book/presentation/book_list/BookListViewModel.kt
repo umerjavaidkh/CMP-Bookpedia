@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
@@ -30,6 +31,7 @@ class BookListViewModel(
         if (cachedBooks.isEmpty()) {
             observeSearchQuery()
         }
+        getFavoriteBooks()
     }
         .stateIn(
             viewModelScope,
@@ -99,5 +101,13 @@ class BookListViewModel(
                     it.copy(errorMessage = error.toUiText())
                 }
             }
+    }
+
+    private fun getFavoriteBooks() = viewModelScope.launch {
+        _state.update { it.copy(isLoading = true) }
+        val result = bookRepository.getFavoriteBooks().first()
+        _state.update {
+            it.copy(isLoading = false, favoriteBooks = result)
+        }
     }
 }

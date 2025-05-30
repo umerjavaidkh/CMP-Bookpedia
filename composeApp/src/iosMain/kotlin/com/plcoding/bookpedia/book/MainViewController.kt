@@ -1,4 +1,4 @@
-package com.plcoding.bookpedia
+package com.plcoding.bookpedia.book
 
 import androidx.compose.ui.window.ComposeUIViewController
 import com.plcoding.bookpedia.app.App

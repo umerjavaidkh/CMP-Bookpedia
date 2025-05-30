@@ -1,6 +1,5 @@
 package com.plcoding.bookpedia.book.presentation.book_detail
 
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -138,7 +137,7 @@ private fun BookDetailScreen(
                     }
                 }
 
-                if (state.book.language.isNotEmpty()) {
+                if (state.book.languages.isNotEmpty()) {
 
                     TitleContent(
                         title = stringResource(Res.string.book_languages),
@@ -148,7 +147,7 @@ private fun BookDetailScreen(
                             horizontalArrangement = Arrangement.Center,
                             modifier = Modifier.wrapContentSize(Alignment.Center)
                         ) {
-                            state.book.language.forEach { it ->
+                            state.book.languages.forEach { it ->
                                 BookChip(modifier = Modifier, size = ChipSize.SMALL) {
                                     Text(
                                         text = it.uppercase(),

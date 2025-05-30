@@ -20,6 +20,7 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
@@ -166,7 +167,7 @@ fun BlurredImageBackground(
                                     Icon(
                                         imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.Favorite,
                                         contentDescription = stringResource(descriptionRes),
-                                        tint = Color.Red
+                                        tint = if(isFavorite) Color.Red else Color.Gray
                                     )
                                 }
                             }

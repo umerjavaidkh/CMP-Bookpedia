@@ -74,7 +74,7 @@ fun BookListScreen(
 ) {
 
     val keyboardController = LocalSoftwareKeyboardController.current
-    val pagerState = rememberPagerState { 2  }
+    val pagerState = rememberPagerState { 2 }
     val searchResultListState = rememberLazyListState()
     val favoriteResultListState = rememberLazyListState()
 
@@ -218,7 +218,7 @@ fun BookListScreen(
 
                             1 -> {
 
-                                if(state.favoriteBooks.isEmpty()){
+                                if (state.favoriteBooks.isEmpty()) {
                                     Text(
                                         text = stringResource(Res.string.no_favorite_books),
                                         textAlign = TextAlign.Center,
@@ -226,13 +226,18 @@ fun BookListScreen(
                                     )
                                 } else {
 
-                                    BookList(
-                                        books = state.favoriteBooks,
-                                        onBookClick = { book ->
-                                            onAction(BookListAction.OnBookClick(book))
-                                        },
-                                        scrollState = favoriteResultListState
-                                    )
+                                    Box(
+                                        modifier = Modifier.fillMaxSize(),
+                                        contentAlignment = Alignment.TopStart
+                                    ) {
+                                        BookList(
+                                            books = state.favoriteBooks,
+                                            onBookClick = { book ->
+                                                onAction(BookListAction.OnBookClick(book))
+                                            },
+                                            scrollState = favoriteResultListState
+                                        )
+                                    }
                                 }
 
                             }
