@@ -66,6 +66,9 @@ kotlin {
             implementation(libs.bundles.ktor)
             implementation(libs.bundles.coil)
         }
+        nativeMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
 
         dependencies {
             ksp(libs.androidx.room.compiler)

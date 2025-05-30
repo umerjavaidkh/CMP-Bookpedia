@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -46,6 +47,7 @@ import cmp_bookpedia.composeapp.generated.resources.favorites
 import cmp_bookpedia.composeapp.generated.resources.go_back
 import cmp_bookpedia.composeapp.generated.resources.no_favorite_books
 import coil3.compose.rememberAsyncImagePainter
+import com.plcoding.bookpedia.book.presentation.PulseAnimation
 import com.plcoding.bookpedia.core.presentation.DarkBlue
 import com.plcoding.bookpedia.core.presentation.DesertWhite
 import com.plcoding.bookpedia.core.presentation.SandYellow
@@ -139,7 +141,7 @@ fun BlurredImageBackground(
                     targetState = imageLoadResult
                 ) { result ->
                     when (result) {
-                        null -> CircularProgressIndicator()
+                        null -> PulseAnimation(modifier = Modifier.size(60.dp))
                         else ->
                             Box {
                                 Image(
@@ -167,7 +169,7 @@ fun BlurredImageBackground(
                                     Icon(
                                         imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.Favorite,
                                         contentDescription = stringResource(descriptionRes),
-                                        tint = if(isFavorite) Color.Red else Color.Gray
+                                        tint = if (isFavorite) Color.Red else Color.Gray
                                     )
                                 }
                             }
